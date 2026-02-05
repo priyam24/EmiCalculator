@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EmiCalculationRequest } from '../model/EmiCalculationRequest';
+import { EmiCalculationResponse } from '../model/EmiCalculationResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class EmiService {
 
   constructor(private http: HttpClient) {}
 
-  calculateEmi(payload: any): Observable<any> {
-    return this.http.post(this.API_URL, payload);
+  calculateEmi(payload: EmiCalculationRequest): Observable<EmiCalculationResponse> {
+    return this.http.post<EmiCalculationResponse>(this.API_URL, payload);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmiService } from './service/emi-service';
+import { EmiCalculationRequest } from './model/EmiCalculationRequest';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
       ],
       interestRate: [
         '',
-        [Validators.required, Validators.min(0.001), Validators.max(100)]
+        [Validators.required, Validators.min(0), Validators.max(100)]
       ],
       loanTermYears: [
         '',
@@ -50,7 +51,7 @@ export class AppComponent implements OnInit {
 
     const v = this.form.value;
 
-    const payload = {
+    const payload: EmiCalculationRequest = {
       loanAmount: v.loanAmount,
       annualInterestRate: v.interestRate,
       loanTermInMonths: v.loanTermYears
