@@ -1,0 +1,45 @@
+<h3>EMI Calculator</h3>
+
+<form [formGroup]="form" (ngSubmit)="calculate()">
+
+  <div>
+    <label>Loan Amount</label>
+    <input type="number" formControlName="loanAmount">
+    <div *ngIf="f.loanAmount.touched && f.loanAmount.invalid">
+      <small style="color:red" *ngIf="f.loanAmount.errors?.required">Required</small>
+      <small style="color:red" *ngIf="f.loanAmount.errors?.min">Must be positive</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Yearly Interest Rate (%)</label>
+    <input type="number" formControlName="interestRate">
+    <div *ngIf="f.interestRate.touched && f.interestRate.invalid">
+      <small style="color:red" *ngIf="f.interestRate.errors?.required">Required</small>
+      <small style="color:red" *ngIf="f.interestRate.errors?.min || f.interestRate.errors?.max">
+        Must be between 0 and 100
+      </small>
+    </div>
+  </div>
+
+  <div>
+    <label>Loan Term (Years)</label>
+    <input type="number" formControlName="loanTermYears">
+    <div *ngIf="f.loanTermYears.touched && f.loanTermYears.invalid">
+      <small style="color:red" *ngIf="f.loanTermYears.errors?.required">Required</small>
+      <small style="color:red" *ngIf="f.loanTermYears.errors?.min || f.loanTermYears.errors?.max">
+        Must be between 1 and 30
+      </small>
+    </div>
+  </div>
+
+  <button type="submit">Calculate</button>
+</form>
+
+<div *ngIf="!errorFlag">
+  <h4>EMI: ₹ {{ emi }}</h4>
+</div>
+
+<div *ngIf="errorFlag" style="color:red">
+  {{ error }}
+</div>
