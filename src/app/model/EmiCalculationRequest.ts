@@ -1,5 +1,5 @@
 export class EmiCalculationRequest {
-    loanAmount: number = 0;
-    annualInterestRate: number = 0;
-    loanTermInMonths: number = 0;
+    loanAmount!: number;
+    annualInterestRate!: number;
+    loanTermInMonths!: number;
 }

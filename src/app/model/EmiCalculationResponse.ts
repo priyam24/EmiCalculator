@@ -1,3 +1,3 @@
 export class EmiCalculationResponse {
-    emiAmount: number = 0;
+    emiAmount!: number;
 }
